@@ -1,13 +1,7 @@
 {
   "author": "Tobias Kopelke",
   "dependencies": {
-    "@types/seedrandom": "^2.4.27",
-    "@types/uuid": "^3.4.3",
-    "seedrandom": "^2.4.4",
-    "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.5.0",
-    "typescript": "^3.0.1",
-    "uuid": "^3.3.2"
+    "jest-cli": "^23.5.0"
   },
   "description": "",
   "keywords": [],
@@ -15,17 +9,26 @@
   "main": "index.js",
   "name": "nx-gameboard",
   "scripts": {
-    "dev": "DEBUG='gameboard*' npx nodemon",
-    "start": "ts-node -r tsconfig-paths/register src",
-    "test": "jest",
+    "lint": "tslint 'lib/**/*.ts'",
+    "lint:fix": "tslint --fix 'lib/**/*.ts'",
+    "build": "rm -rf dist && tsc -p tsconfig.release.json",
+    "test": "npm run test:coverage",
+    "test-only": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "semantic-release": "semantic-release"
   },
   "version": "0.0.0-development",
   "devDependencies": {
+    "@types/seedrandom": "^2.4.27",
+    "@types/uuid": "^3.4.3",
+    "seedrandom": "^2.4.4",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.5.0",
+    "typescript": "^3.0.1",
+    "uuid": "^3.3.2",
     "jest": "^23.5.0",
-    "ts-jest": "^23.1.4",
-    "semantic-release": "^15.9.12"
+    "ts-jest": "^23.1.4"
   },
   "repository": {
     "type": "git",

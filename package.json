@@ -13,7 +13,7 @@
   "keywords": [],
   "license": "ISC",
   "main": "index.js",
-  "name": "gameboard",
+  "name": "nx-gameboard",
   "scripts": {
     "dev": "DEBUG='gameboard*' npx nodemon",
     "start": "ts-node -r tsconfig-paths/register src",

@@ -1,0 +1,28 @@
+{
+  "author": "Tobias Kopelke",
+  "dependencies": {
+    "@types/seedrandom": "^2.4.27",
+    "@types/uuid": "^3.4.3",
+    "seedrandom": "^2.4.4",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.5.0",
+    "typescript": "^3.0.1",
+    "uuid": "^3.3.2"
+  },
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "gameboard",
+  "scripts": {
+    "dev": "DEBUG='gameboard*' npx nodemon",
+    "start": "ts-node -r tsconfig-paths/register src",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "jest": "^23.5.0",
+    "ts-jest": "^23.1.4"
+  }
+}

@@ -16,7 +16,8 @@
     "test-only": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "version": "0.0.0-development",
   "devDependencies": {
@@ -28,7 +29,9 @@
     "typescript": "^3.0.1",
     "uuid": "^3.3.2",
     "jest": "^23.5.0",
-    "ts-jest": "^23.1.4"
+    "ts-jest": "^23.1.4",
+    "travis-deploy-once": "^5.0.7",
+    "semantic-release": "^15.9.12"
   },
   "repository": {
     "type": "git",

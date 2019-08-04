@@ -1,5 +1,5 @@
 
-import { BaseCell, generateGameboard } from './index'
+import { BaseCell, generateGameboard } from './gameboard'
 
 export type Player = 'X' | 'O'
 export type CellState = ' ' | Player
@@ -61,9 +61,9 @@ export const TicTacToe = ({
     ) return true
 
     // check diagonals
-    const center = board.get(1, 1)
-    if(checker([board.get(0, 0), center, board.get(2, 2)])
-    || checker([board.get(2, 0), center, board.get(0, 2)])
+    const center = board.get(1, 1) as TicTacToeCell
+    if(checker([board.get(0, 0) as TicTacToeCell, center, board.get(2, 2) as TicTacToeCell])
+    || checker([board.get(2, 0) as TicTacToeCell, center, board.get(0, 2) as TicTacToeCell])
     ) return true
 
     return false
@@ -71,6 +71,8 @@ export const TicTacToe = ({
 
   const place = (x: number, y: number) => {
     const cell = board.get(x, y)
+    if(!cell)
+      throw new Error(`Cell(${x}:${y}) not found`)
     if(winner !== ' ')
       throw new Error('Game is over')
     if(cell.state !== ' ')

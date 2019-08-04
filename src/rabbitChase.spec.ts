@@ -2,32 +2,36 @@
 import { RabbitChaseBoard } from './rabbitChase'
 
 describe('rabbitChase', () => {
-  it.skip('should generate a game board', () => {
-    const rabbitChase = RabbitChaseBoard({ seed: 'a' })
+  it('should generate a game board', () => {
+    const rabbitChase = RabbitChaseBoard({ seed: 'test-a' })
     rabbitChase.init()
-    console.log(rabbitChase.drawBoard())
+    expect(rabbitChase.drawBoard()).toMatchSnapshot()
 
-    // console.log('---------')
-    // console.log('---------')
-    // return
-
-    const rabbitChase1 = RabbitChaseBoard({ seed: 'Ruth' })
+    const rabbitChase1 = RabbitChaseBoard({ seed: 'test-b' })
     rabbitChase.init()
-    console.log(rabbitChase.drawBoard())
+    expect(rabbitChase.drawBoard()).toMatchSnapshot()
 
-    const rabbitChase2 = RabbitChaseBoard({ seed: 'Tobi' })
+    const rabbitChase2 = RabbitChaseBoard({ seed: 'test-c' })
     rabbitChase.init()
-    console.log(rabbitChase.drawBoard())
-
-    console.log('---------')
-    console.log('---------')
+    expect(rabbitChase.drawBoard()).toMatchSnapshot()
   })
 
-  it.skip('should render it to json correctly', () => {
-    const rabbitChase = RabbitChaseBoard({})
+  it('should render it to json correctly', () => {
+    const rabbitChase = RabbitChaseBoard({ seed: 'test' })
     rabbitChase.init()
-    console.log(rabbitChase.toJSON())
-    console.log(rabbitChase.drawBoard())
-    console.log(rabbitChase.drawBoard(true))
+    expect(rabbitChase.toJSON()).toMatchSnapshot()
+    expect(rabbitChase.drawBoard()).toMatchSnapshot()
+    expect(rabbitChase.drawBoard(true)).toMatchSnapshot()
+  })
+
+  it('should be able to change the settings', () => {
+    const rabbitChase66 = RabbitChaseBoard({ seed: 'test' })
+    const rabbitChase88 = RabbitChaseBoard({ seed: 'test', cols: 8, rows: 8, maxItems: 50 })
+    rabbitChase66.init()
+    rabbitChase88.init()
+    expect(rabbitChase88.toJSON()).not.toEqual(rabbitChase66.toJSON())
+    expect(rabbitChase88.toJSON()).toMatchSnapshot()
+    expect(rabbitChase88.drawBoard()).toMatchSnapshot()
+    expect(rabbitChase88.drawBoard(true)).toMatchSnapshot()
   })
 })

@@ -1,15 +1,31 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "lib": ["es2016", "dom", "es7", "esnext"],
-    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es2016",
+      "dom",
+      "es7",
+      "esnext",
+      "es2015"
+    ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noEmitOnError": true,
     "outDir": "build",
     "rootDir": "src",
     "sourceMap": true,
-    "target": "esnext"
+    "target": "es6",
+    "allowJs": true,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve"
   },
   "include": [
     "./src/**/*.ts"

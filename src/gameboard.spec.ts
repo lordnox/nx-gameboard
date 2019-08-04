@@ -1,5 +1,5 @@
 
-import { generateGameboard } from './index'
+import { generateGameboard } from './gameboard'
 
 describe('gameboard', () => {
   it('should generate a basic empty gameboard', () => {

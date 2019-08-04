@@ -1,49 +1,67 @@
 
-import * as seedrandom from 'seedrandom'
+import { default as seedrandom } from 'seedrandom'
 
-import { arrayConcat, arrayUnique, BaseCell, drawBoard, generateGameboard } from './index'
+import { arrayConcat, arrayUnique, BaseCell, drawBoard, generateGameboard } from './gameboard'
 
 const MAX_DISTANCE = 999999
 const empty = ' '
 const rabbit = '🐇'
 const carrot = '🥕'
+
 export type CellState = typeof empty | typeof carrot | typeof rabbit
 export type RabbitChaseCellGetter = () => RabbitChaseCell
+export type Distance = number | '%'
 export interface RabbitChaseCell extends BaseCell {
   state: CellState
-  distance: number | '%'
+  distance: Distance
 }
 export interface RabbitChaseOutputCell extends BaseCell {
   state: CellState | number
 }
 export interface RabbitChaseOptions {
-  seed?: string | number,
+  seed: string | number,
+  cols: number
+  rows: number
+  maxItems: number
 }
 
-const initializeSeed = (seed: string | number) => {
-  if(seed)
-    return seed
-  const rng = seedrandom(null, { entropy: true })
-  return rng()
+const initializeSeed = (seed?: string | number) =>
+  `${seed ? seed : seedrandom(`${Math.random()}`, { entropy: true })()}`
+
+export interface RabbitChaseBoardSettingsItem {
+  hidden: CellState
+  clue: CellState
 }
 
-export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
+export interface RabbitChaseBoardSettings extends RabbitChaseOptions {
+  maxItems: number
+  item: RabbitChaseBoardSettingsItem
+}
+
+export const RabbitChaseBoard = ({
+  seed,
+  cols = 6,
+  rows = 6,
+  maxItems = Math.floor((cols / 2) + (rows / 2) + 1),
+}: Partial<RabbitChaseOptions> = {}) => {
   const usedSeed = initializeSeed(seed)
   const rng = seedrandom(usedSeed)
 
-  const settings = {
-    cols: 6,
+  const settings: RabbitChaseBoardSettings = {
+    cols,
     item: {
       hidden: rabbit,
       clue: carrot,
     },
-    maxItems: 7,
-    rows: 6,
+    maxItems,
+    rows,
     seed: usedSeed,
   }
 
   const board = generateGameboard<RabbitChaseCell>({
-    cols: settings.cols, rows: settings.rows, carrots: settings.maxItems,
+    cols: settings.cols,
+    rows: settings.rows,
+    carrots: settings.maxItems,
     cell: (baseCell): RabbitChaseCell => ({
       ...baseCell,
       distance: MAX_DISTANCE,
@@ -79,21 +97,19 @@ export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
 
   const findDirectNeighbours = ({ x, y }: BaseCell) => [
     board.get(x, y - 1), board.get(x - 1, y), board.get(x + 1, y), board.get(x, y + 1),
-  ].filter(x => x)
+  ].filter(x => x) as RabbitChaseCell[]
 
   const init = () => {
     clear()
     const availableCells = board.cells().map(cell => cell.index)
     const remove = removeCellFromList(availableCells)
 
-    const setHidden = (index: number, d = false) => {
+    const setHidden = (index: number) => {
       const cell = board.cell(index)
       cell.state = settings.item.hidden
       remove(index)
       cell.distance = 0
       const neighbours = findNeighbours(cell).map(cell => cell.index)
-      if(d)
-        console.log(neighbours)
       neighbours.map(remove)
       neighbours.forEach(index => board.cell(index).distance = '%')
       availableCells.forEach(index => {
@@ -111,7 +127,7 @@ export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
         return []
       const lowDistance = availableCells.reduce((memo, index) => {
         const { distance } = board.cell(index)
-        return memo < distance ? memo : distance
+        return distance === '%' || memo < distance ? memo : distance
       }, MAX_DISTANCE)
       return availableCells.filter(index => board.cell(index).distance <= lowDistance + 1)
     }
@@ -141,7 +157,7 @@ export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
   const toJSON = () => {
     const top = board.cols.map(collectFromCells(settings.item.hidden))
     const left = board.rows.map(collectFromCells(settings.item.hidden))
-    const carrots = findByType(settings.item.hidden).map(({ x, y, index }) => ({ x, y, index }))
+    const carrots = findByType(settings.item.clue).map(({ x, y, index }) => ({ x, y, index }))
     return {
       cols: settings.cols,
       rows: settings.rows,
@@ -160,7 +176,10 @@ export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
       }
       if(y === 0)
         return top[x - 1]
-      const { state } = board.get(x - 1, y - 1)
+      const cell = board.get(x - 1, y - 1)
+      if(!cell)
+        return empty
+      const { state } = cell
       if(allowHidden)
         return state
       return state === settings.item.hidden ? empty : state
@@ -190,6 +209,9 @@ export const RabbitChaseBoard = ({ seed }: RabbitChaseOptions) => {
       })
       const emptyCell = { draw: () => '   ' }
       return drawBoard(localBoard, showHidden)
+    },
+    getInitialSolution: () => {
+      console.log('solution')
     },
     toJSON,
   }

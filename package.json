@@ -1,7 +1,9 @@
 {
   "author": "Tobias Kopelke",
   "dependencies": {
-    "jest-cli": "^23.5.0"
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "jest-cli": "^23.6.0"
   },
   "description": "",
   "keywords": [],
@@ -22,16 +24,16 @@
   "version": "0.0.0-development",
   "devDependencies": {
     "@types/seedrandom": "^2.4.27",
-    "@types/uuid": "^3.4.3",
+    "@types/uuid": "^3.4.4",
     "seedrandom": "^2.4.4",
     "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.5.0",
-    "typescript": "^3.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "typescript": "^3.2.4",
     "uuid": "^3.3.2",
-    "jest": "^23.5.0",
-    "ts-jest": "^23.1.4",
-    "travis-deploy-once": "^5.0.7",
-    "semantic-release": "^15.9.12"
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "travis-deploy-once": "^5.0.11",
+    "semantic-release": "^15.13.3"
   },
   "repository": {
     "type": "git",

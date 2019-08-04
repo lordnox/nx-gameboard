@@ -2,6 +2,7 @@
 import { default as seedrandom } from 'seedrandom'
 
 import { arrayConcat, arrayUnique, BaseCell, drawBoard, generateGameboard } from './gameboard'
+import { Solution } from './solution'
 
 const MAX_DISTANCE = 999999
 const empty = ' '
@@ -211,7 +212,20 @@ export const RabbitChaseBoard = ({
       return drawBoard(localBoard, showHidden)
     },
     getInitialSolution: () => {
-      console.log('solution')
+      const hidden: CellState[] = [empty, rabbit]
+      const unknown = '?'
+      const actions: string[] = ['cellToEmpty', 'cellToUnknown', 'cellToRabbit']
+      const sumHints = (cells: RabbitChaseCell[]) => cells.reduce(
+        (memo, cell) => memo + (cell.state === rabbit ? 1 : 0), 0)
+      return Solution(
+        board,
+        cell => hidden.includes(cell.state),
+        unknown,
+        cell => cell.state,
+        sumHints,
+        actions,
+        (cells, action, payload) => cells,
+      )
     },
     toJSON,
   }

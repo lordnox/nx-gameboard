@@ -19,6 +19,7 @@ describe('rabbitChase', () => {
   it('should render it to json correctly', () => {
     const rabbitChase = RabbitChaseBoard({ seed: 'test' })
     rabbitChase.init()
+    rabbitChase.getInitialSolution()
     expect(rabbitChase.toJSON()).toMatchSnapshot()
     expect(rabbitChase.drawBoard()).toMatchSnapshot()
     expect(rabbitChase.drawBoard(true)).toMatchSnapshot()

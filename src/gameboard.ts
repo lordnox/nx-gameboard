@@ -54,7 +54,7 @@ export const range = (startOrLength: number, optionalStart?: number, optionalSte
 // removes all dublicates from an array
 export const arrayUnique = <T>(array: T[]): T[] => Array.from(new Set(array))
 // flattens an array
-export const arrayConcat = <T>(array: BiDimensionalArray<T>): T[] => [].concat.apply([], array)
+export const arrayConcat = <T>(array: BiDimensionalArray<T>): T[] => array.flat()
 // mapping function that calls the mapped element
 export const call = <T>(fn: () => T) => fn()
 

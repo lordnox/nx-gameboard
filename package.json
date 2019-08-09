@@ -1,8 +1,8 @@
 {
   "author": "Tobias Kopelke",
   "dependencies": {
-    "@types/jest": "^23.3.12",
-    "@types/node": "^10.12.18",
+    "@types/jest": "^23.3.14",
+    "@types/node": "^10.14.15",
     "jest-cli": "^23.6.0"
   },
   "description": "",
@@ -13,7 +13,8 @@
   "scripts": {
     "lint": "tslint 'lib/**/*.ts'",
     "lint:fix": "tslint --fix 'lib/**/*.ts'",
-    "build": "rm -rf dist && tsc -p tsconfig.release.json",
+    "prebuild": "rm -rf lib",
+    "build": "tsc -p tsconfig.release.json",
     "test": "npm run test:coverage",
     "test-only": "jest",
     "test:watch": "jest --watch",
@@ -23,17 +24,17 @@
   },
   "version": "0.0.0-development",
   "devDependencies": {
-    "@types/seedrandom": "^2.4.27",
+    "@types/seedrandom": "^2.4.28",
     "@types/uuid": "^3.4.4",
+    "jest": "^23.6.0",
     "seedrandom": "^2.4.4",
+    "semantic-release": "^15.13.3",
+    "travis-deploy-once": "^5.0.11",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
-    "typescript": "^3.2.4",
-    "uuid": "^3.3.2",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.5",
-    "travis-deploy-once": "^5.0.11",
-    "semantic-release": "^15.13.3"
+    "typescript": "^3.5.3",
+    "uuid": "^3.3.2"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,7 @@
 
-import { default as seedrandom } from 'seedrandom'
+import { default as s, seedrandom_prng } from 'seedrandom'
+
+const seedrandom: seedrandom_prng = s
 
 import { arrayConcat, arrayUnique, BaseCell, drawBoard, generateGameboard } from './gameboard'
 import { Solution } from './solution'
@@ -89,7 +91,7 @@ export const RabbitChaseBoard = ({
     board.get(x - 1, y - 1), board.get(x, y - 1), board.get(x + 1, y - 1),
     board.get(x - 1, y),                          board.get(x + 1, y),
     board.get(x - 1, y + 1), board.get(x, y + 1), board.get(x + 1, y + 1),
-  ].filter(x => x)
+  ].filter(x => x) as RabbitChaseCell[]
 
   const removeCellFromList = (list: number[]) => (cell: number) => {
     const index = list.findIndex(item => item === cell)

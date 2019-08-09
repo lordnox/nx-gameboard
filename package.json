@@ -8,8 +8,9 @@
   "description": "",
   "keywords": [],
   "license": "ISC",
-  "main": "index.js",
   "name": "nx-gameboard",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "lint": "tslint 'lib/**/*.ts'",
     "lint:fix": "tslint --fix 'lib/**/*.ts'",

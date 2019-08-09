@@ -32,5 +32,5 @@ export const Solution = <
     rowHints,
     colHints,
   }
-  console.log(solution)
+  return solution
 }

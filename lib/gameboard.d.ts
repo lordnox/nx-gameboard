@@ -22,9 +22,9 @@ export interface BaseCell {
     readonly index: number;
     draw: <DrawOptions>(options: DrawOptions) => string;
 }
-export declare const range: (startOrLength: number, optionalStart?: number | undefined, optionalStep?: number | undefined) => number[];
+export declare const range: (startOrLength: number, optionalStart?: number, optionalStep?: number) => number[];
 export declare const arrayUnique: <T>(array: T[]) => T[];
 export declare const arrayConcat: <T>(array: T[][]) => T[];
 export declare const call: <T>(fn: () => T) => T;
-export declare const drawBoard: <T>(board: Gameboard<BaseCell>, options?: T | undefined) => string;
-export declare const generateGameboard: <Cell extends BaseCell = BaseCell>(partialLocalSettings?: Partial<GenerateGameboardProps<Cell>> | undefined) => Gameboard<Cell>;
+export declare const drawBoard: <T>(board: Gameboard<BaseCell>, options?: T) => string;
+export declare const generateGameboard: <Cell extends BaseCell = BaseCell>(partialLocalSettings?: Partial<GenerateGameboardProps<Cell>>) => Gameboard<Cell>;

@@ -1,7 +1,10 @@
 
-import { default as s, seedrandom_prng } from 'seedrandom'
+import * as Seedrandom from 'seedrandom'
+import { seedRandomOptions, seedrandomCallback, seedrandom_prng } from 'seedrandom'
 
-const seedrandom: seedrandom_prng = s
+// this is just to make sure typescript likes seedrandom
+type SeedrandomFn = (seed?: string, options?: seedRandomOptions, callback?: seedrandomCallback) => Seedrandom.prng
+const seedrandom: SeedrandomFn = Seedrandom as any
 
 import { arrayConcat, arrayUnique, BaseCell, drawBoard, generateGameboard } from './gameboard'
 import { Solution } from './solution'

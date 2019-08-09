@@ -29,7 +29,14 @@ export interface RabbitChaseBoardSettings extends RabbitChaseOptions {
 export declare const RabbitChaseBoard: ({ seed, cols, rows, maxItems, }?: Partial<RabbitChaseOptions>) => {
     init: () => void;
     drawBoard: (showHidden?: boolean) => string;
-    getInitialSolution: () => void;
+    getInitialSolution: () => {
+        actions: string[];
+        cols: number;
+        rows: number;
+        index: (" " | "🐇" | "🥕" | "?")[];
+        rowHints: number[];
+        colHints: number[];
+    };
     toJSON: () => {
         cols: number;
         rows: number;

@@ -10,6 +10,6 @@ export interface TicTacToeOptions {
 }
 export declare const TicTacToe: ({ seed, startingPlayer, }: TicTacToeOptions) => {
     drawBoard: () => string;
-    place: (x: number, y: number) => "X" | "O" | undefined;
+    place: (x: number, y: number) => Player;
     winner: () => CellState;
 };

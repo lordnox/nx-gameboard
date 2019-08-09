@@ -2,7 +2,8 @@
   "author": "Tobias Kopelke",
   "dependencies": {
     "@types/node": "^10.14.15",
-    "jest-cli": "^23.6.0"
+    "jest-cli": "^23.6.0",
+    "seedrandom": "^3.0.3"
   },
   "description": "",
   "keywords": [],
@@ -28,7 +29,6 @@
     "@types/seedrandom": "^2.4.28",
     "@types/uuid": "^3.4.4",
     "jest": "^23.6.0",
-    "seedrandom": "^2.4.4",
     "semantic-release": "^15.13.3",
     "travis-deploy-once": "^5.0.11",
     "ts-jest": "^23.10.5",

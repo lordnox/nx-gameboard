@@ -29,7 +29,7 @@
     "@types/seedrandom": "^2.4.28",
     "@types/uuid": "^3.4.4",
     "jest": "^23.6.0",
-    "semantic-release": "^15.13.3",
+    "semantic-release": "^17.2.3",
     "travis-deploy-once": "^5.0.11",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
